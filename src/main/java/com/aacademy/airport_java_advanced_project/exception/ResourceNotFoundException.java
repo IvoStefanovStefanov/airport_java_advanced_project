@@ -1,2 +1,12 @@
-package com.aacademy.airport_java_advanced_project.exception;public class ResourceNotFoundException {
+package com.aacademy.airport_java_advanced_project.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.CONFLICT)
+public class ResourceNotFoundException extends RuntimeException{
+
+    public ResourceNotFoundException(String message){
+        super(message);
+    }
 }
