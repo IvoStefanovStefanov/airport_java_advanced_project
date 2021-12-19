@@ -16,5 +16,4 @@ public interface AirportService {
 
     Set<Airport> findAll();
 
-    void delete(Long id);
 }

@@ -27,5 +27,4 @@ public class DestinationConverter {
                         .build())
                 .build();
     }
-
 }

@@ -2,10 +2,8 @@ package com.aacademy.airport_java_advanced_project.controller;
 
 import com.aacademy.airport_java_advanced_project.converter.AirportConverter;
 import com.aacademy.airport_java_advanced_project.dto.AirportDto;
-import com.aacademy.airport_java_advanced_project.dto.DestinationDto;
 import com.aacademy.airport_java_advanced_project.model.Airport;
 import com.aacademy.airport_java_advanced_project.service.AirportService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,6 @@ import java.util.stream.Collectors;
 public class AirportController {
     private  final AirportService airportService;
     private final AirportConverter airportConverter;
-
 
     public AirportController(AirportService airportService, AirportConverter airportConverter) {
         this.airportService = airportService;
@@ -48,18 +45,18 @@ public class AirportController {
                 .collect(Collectors.toSet()));
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AirportDto> update(@RequestBody AirportDto airportDto, @PathVariable Long id){
+        Airport airport = airportConverter.toAirport(airportDto);
+        Airport savedAirport = airportService.update(airport, id);
+        AirportDto airportDtoResponse = airportConverter.toAirportDto(savedAirport);
+        return ResponseEntity.ok(airportDtoResponse);
+    }
+
     @GetMapping(value = "/name/{name}")
     public ResponseEntity<AirportDto> findByName(@PathVariable String name){
         Airport airport = airportService.findByName(name);
         AirportDto airportDto = airportConverter.toAirportDto(airport);
         return ResponseEntity.ok(airportDto);
     }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<HttpStatus> delete(@PathVariable Long id){
-        airportService.delete(id);
-        return ResponseEntity.ok().build();
-    }
-
-
 }

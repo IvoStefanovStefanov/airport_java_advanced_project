@@ -30,6 +30,13 @@ public class DestinationController {
         return ResponseEntity.ok(destinationDtoResponse);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<DestinationDto> update(@RequestBody DestinationDto destinationDto, @PathVariable Long id){
+        Destination destination = destinationConverter.toDestination(destinationDto);
+        Destination savedDestination = destinationService.update(destination, id);
+        DestinationDto destinationDtoResponse = destinationConverter.toDestinationDto(savedDestination);
+        return ResponseEntity.ok(destinationDtoResponse);
+    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<DestinationDto> findById(@PathVariable Long id){
@@ -58,5 +65,4 @@ public class DestinationController {
         destinationService.delete(id);
         return ResponseEntity.ok().build();
     }
-
 }

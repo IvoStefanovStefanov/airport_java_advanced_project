@@ -14,10 +14,8 @@ public class AirportServiceImpl implements AirportService {
 
     private final AirportRepository airportRepository;
 
-
     public AirportServiceImpl(AirportRepository airportRepository) {
         this.airportRepository = airportRepository;
-
     }
 
     @Override
@@ -32,12 +30,16 @@ public class AirportServiceImpl implements AirportService {
         return airportRepository.save(Airport.builder()
                 .name(airport.getName())
                 .build());
-
     }
 
     @Override
     public Airport update(Airport airport, Long id) {
-        return null;
+        Airport foundAirport = findById(id);
+        Airport updatedAirport = Airport.builder()
+                .id(foundAirport.getId())
+                .name(airport.getName())
+                .build();
+        return airportRepository.save(updatedAirport);
     }
 
     @Override
@@ -52,8 +54,5 @@ public class AirportServiceImpl implements AirportService {
         return new HashSet<>(airportRepository.findAll());
     }
 
-    @Override
-    public void delete(Long id) {
-        airportRepository.deleteById(id);
-    }
 }
+

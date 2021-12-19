@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,9 +27,5 @@ public class Destination {
     @ManyToOne
     @JoinColumn(name = "airport_id", foreignKey = @ForeignKey(name = "fk_airport_id"))
     private Airport airports;
-
-
-
-
 
 }

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,10 +24,4 @@ public class Airport {
     @Column(nullable = false, unique = true)
     private String name;
 
-//    @OneToMany(mappedBy = "airport")
-//    private Set<Destination> destinations;
-
-//    @OneToMany
-//    @JoinColumn(name = "destination_id", foreignKey = @ForeignKey(name = "fk_destination_id"))
-//    private Destination destination;
 }

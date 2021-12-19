@@ -46,7 +46,15 @@ public class DestinationServiceImpl implements DestinationService {
 
     @Override
     public Destination update(Destination destination, Long id) {
-        return null;
+        Destination foundDestination = findById(id);
+        Destination destinationToUpdate = Destination.builder()
+                .id(foundDestination.getId())
+                .name(destination.getName())
+                .airports(Airport.builder()
+                        .id(destination.getAirports().getId())
+                        .build())
+                .build();
+        return destinationRepository.save(destinationToUpdate);
     }
 
     @Override

@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,5 +15,4 @@ public class AirportDto {
 
     private String name;
 
-//    private Set<Long> destinationsIds;
 }
